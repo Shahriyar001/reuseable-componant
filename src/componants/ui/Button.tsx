@@ -2,7 +2,12 @@ import { twMerge } from "tailwind-merge";
 import {} from "clsx";
 import { clsx } from "clsx";
 import cn from "../../utils/cn";
-import { ButtonHTMLAttributes, DetailedHTMLProps, forwardRef } from "react";
+import {
+  ButtonHTMLAttributes,
+  Children,
+  DetailedHTMLProps,
+  forwardRef,
+} from "react";
 
 type Tref = HTMLButtonElement;
 
@@ -19,7 +24,7 @@ type TButton = DetailedHTMLProps<
   TButtonOption;
 
 const Button = forwardRef<Tref, TButton>(
-  ({ className, variant = "solid", ...rest }, ref) => {
+  ({ className, variant = "solid", children, ...rest }, ref) => {
     const getVariant = (variant: TVariant) => {
       switch (variant) {
         case "outline":
@@ -38,7 +43,7 @@ const Button = forwardRef<Tref, TButton>(
           ref={ref}
           className={cn(getVariant(variant), className)}
         >
-          Click
+          {children}
         </button>
       </div>
     );
