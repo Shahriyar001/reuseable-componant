@@ -3,6 +3,7 @@ import cn from "../../utils/cn";
 import Button from "../ui/Button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SignUpScema, TNormalForm } from "./validation";
+import InputField from "./inputField";
 
 const NormalForm = () => {
   const methods = useForm<TNormalForm>({
@@ -22,7 +23,7 @@ const NormalForm = () => {
   console.log(watch("name"));
   const double = true;
   return (
-    <FormProvider>
+    <FormProvider {...methods}>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className={cn(
@@ -38,6 +39,12 @@ const NormalForm = () => {
             "md:grid-cols-2": double,
           })}
         >
+          <div className="w-full max-w-md">
+            <label className="block" htmlFor="name">
+              something
+            </label>
+            <InputField />
+          </div>
           <div className="w-full max-w-md">
             <label className="block" htmlFor="name">
               Name
